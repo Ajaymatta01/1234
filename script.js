@@ -433,5 +433,45 @@ function analyzeExpenses() {
 
 }
 
+function registerAdmin(event) {
+    event.preventDefault();
+
+    let name = document.getElementById("adminName").value;
+    let email = document.getElementById("adminRegEmail").value;
+    let password = document.getElementById("adminRegPassword").value;
+
+    localStorage.setItem("adminName", name);
+    localStorage.setItem("adminEmail", email);
+    localStorage.setItem("adminPassword", password);
+
+    document.getElementById("adminRegMessage").innerText =
+        "Admin registered successfully!";
+
+    document.getElementById("adminRegMessage").style.color = "green";
+}
+
+function adminLogin(event) {
+    event.preventDefault();
+
+    let email = document.getElementById("adminEmail").value;
+    let password = document.getElementById("adminPassword").value;
+
+    if (
+        email === localStorage.getItem("adminEmail") &&
+        password === localStorage.getItem("adminPassword")
+    ) {
+        localStorage.setItem("adminLoggedIn", "true");
+
+        document.getElementById("adminLogin").style.display = "none";
+        document.getElementById("adminPanel").style.display = "block";
+
+        loadUsers();
+    } else {
+        document.getElementById("adminMessage").innerText =
+            "Invalid Admin Credentials!";
+    }
+}
+
+
 
 

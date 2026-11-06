@@ -22,21 +22,29 @@
     <p>Manage and monitor the Online Banking System.</p>
 </section>
 
+
 <div id="adminLogin" class="container">
+
     <h2>Admin Login</h2>
 
     <form onsubmit="adminLogin(event)">
+
         <input type="email" id="adminEmail"
                placeholder="Admin Email" required>
 
         <input type="password" id="adminPassword"
                placeholder="Admin Password" required>
 
-        <button type="submit">Login as Admin</button>
+        <button type="submit">Login</button>
+
     </form>
 
     <p id="adminMessage"></p>
+
+    <a href="admin-register.html">Create Admin Account</a>
+
 </div>
+
 
 <div id="adminPanel" style="display:none;">
 
