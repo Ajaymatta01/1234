@@ -277,6 +277,43 @@ footer {
     margin-bottom: 8px;
 }
 
+/* User and Admin Dashboard */
+
+.container p {
+    margin: 12px 0;
+    line-height: 1.6;
+}
+
+.container a {
+    color: #073b66;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#adminPanel {
+    padding-top: 5px;
+}
+
+#adminPanel button {
+    background: #e63946;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#adminLogin {
+    max-width: 450px;
+}
+
+#adminMessage {
+    margin-top: 12px;
+}
+
+
+
+
 
 
 

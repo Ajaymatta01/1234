@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>Bank Admin Dashboard</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <button onclick="logout()">Logout</button>
+    </nav>
+</header>
+
+<section class="welcome">
+    <h2>Welcome, Administrator!</h2>
+    <p>Manage and monitor the Online Banking System.</p>
+</section>
+
+<div id="adminLogin" class="container">
+    <h2>Admin Login</h2>
+
+    <form onsubmit="adminLogin(event)">
+        <input type="email" id="adminEmail"
+               placeholder="Admin Email" required>
+
+        <input type="password" id="adminPassword"
+               placeholder="Admin Password" required>
+
+        <button type="submit">Login as Admin</button>
+    </form>
+
+    <p id="adminMessage"></p>
+</div>
+
+<div id="adminPanel" style="display:none;">
+
+    <section class="container">
+        <h2>Admin Overview</h2>
+
+        <div class="cards">
+            <div class="card">
+                <h3>Total Registered Users</h3>
+                <p id="totalUsers">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Bank Balance (Demo)</h3>
+                <p>₹50,000</p>
+            </div>
+
+            <div class="card">
+                <h3>System Status</h3>
+                <p>Active</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="container">
+        <h2>Registered User Details</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>Account Type</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody id="userTable"></tbody>
+        </table>
+    </section>
+
+</div>
+
+<footer>
+    <p>© 2026 Online Banking System - Admin Panel</p>
+</footer>
+
+<script src="script.js"></script>
+<script>
+function adminLogin(event) {
+    event.preventDefault();
+
+    let email = document.getElementById("adminEmail").value;
+    let password = document.getElementById("adminPassword").value;
+
+    if (email === "admin@bank.com" &&
+        password === "admin123") {
+
+        document.getElementById("adminLogin").style.display = "none";
+        document.getElementById("adminPanel").style.display = "block";
+
+        loadUsers();
+
+    } else {
+        document.getElementById("adminMessage").innerText =
+            "Invalid Admin Email or Password";
+
+        document.getElementById("adminMessage").style.color = "red";
+    }
+}
+
+function loadUsers() {
+    let name = localStorage.getItem("userName");
+    let email = localStorage.getItem("userEmail");
+    let mobile = localStorage.getItem("userMobile");
+    let type = localStorage.getItem("accountType");
+
+    let table = document.getElementById("userTable");
+
+    table.innerHTML = "";
+
+    if (email) {
+        table.innerHTML = `
+            <tr>
+                <td>${name}</td>
+                <td>${email}</td>
+                <td>${mobile}</td>
+                <td>${type}</td>
+                <td>
+                    <button onclick="deleteUser()">Delete</button>
+                </td>
+            </tr>
+        `;
+
+        document.getElementById("totalUsers").innerText = "1";
+    } else {
+        table.innerHTML =
+            "<tr><td colspan='5'>No registered users found</td></tr>";
+
+        document.getElementById("totalUsers").innerText = "0";
+    }
+}
+
+function deleteUser() {
+    if (confirm("Are you sure you want to delete this user?")) {
+        localStorage.removeItem("userName");
+        localStorage.removeItem("userEmail");
+        localStorage.removeItem("userMobile");
+        localStorage.removeItem("accountType");
+        localStorage.removeItem("userPassword");
+
+        loadUsers();
+        alert("User deleted successfully!");
+    }
+}
+</script>
+
+</body>
+</html>

@@ -428,6 +428,8 @@ function analyzeExpenses() {
 
     document.getElementById("expenseAdvice").innerText =
         advice;
+        window.location.href = "index.html";
+        window.location.href = "user.html";
 
 }
 

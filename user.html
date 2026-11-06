@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>User Dashboard</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="#profile">My Profile</a>
+        <a href="#account">My Account</a>
+        <button onclick="logout()">Logout</button>
+    </nav>
+</header>
+
+<section class="welcome">
+    <h2>Welcome, <span id="userName">User</span>!</h2>
+    <p>Manage your banking activities easily.</p>
+</section>
+
+<section class="container" id="profile">
+    <h2>My Profile</h2>
+    <p><b>Name:</b> <span id="profileName"></span></p>
+    <p><b>Email:</b> <span id="profileEmail"></span></p>
+    <p><b>Mobile:</b> <span id="profileMobile"></span></p>
+    <p><b>Account Type:</b> <span id="profileType"></span></p>
+</section>
+
+<section class="container" id="account">
+    <h2>My Account Details</h2>
+
+    <div class="cards">
+        <div class="card">
+            <h3>Account Balance</h3>
+            <p id="userBalance">₹50,000</p>
+        </div>
+
+        <div class="card">
+            <h3>Account Number</h3>
+            <p>XXXX XXXX 1234</p>
+        </div>
+
+        <div class="card">
+            <h3>Account Status</h3>
+            <p>Active</p>
+        </div>
+    </div>
+</section>
+
+<section class="container">
+    <h2>Banking Services</h2>
+    <div class="cards">
+        <div class="card">
+            <h3>Fund Transfer</h3>
+            <a href="index.html#transfer">Transfer Money</a>
+        </div>
+
+        <div class="card">
+            <h3>Bill Payments</h3>
+            <a href="index.html#bills">Pay Bills</a>
+        </div>
+
+        <div class="card">
+            <h3>Loan Services</h3>
+            <a href="index.html#loan">Apply Loan</a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 Online Banking System</p>
+</footer>
+
+<script src="script.js"></script>
+<script>
+    document.getElementById("userName").innerText =
+        localStorage.getItem("userName") || "User";
+
+    document.getElementById("profileName").innerText =
+        localStorage.getItem("userName") || "Not Available";
+
+    document.getElementById("profileEmail").innerText =
+        localStorage.getItem("userEmail") || "Not Available";
+
+    document.getElementById("profileMobile").innerText =
+        localStorage.getItem("userMobile") || "Not Available";
+
+    document.getElementById("profileType").innerText =
+        localStorage.getItem("accountType") || "Not Available";
+</script>
+
+</body>
+</html>
