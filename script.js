@@ -472,6 +472,59 @@ function adminLogin(event) {
     }
 }
 
+function adminLogin(event) {
+    event.preventDefault();
+
+    let email = document.getElementById("adminEmail").value;
+    let password = document.getElementById("adminPassword").value;
+
+    if (
+        email === localStorage.getItem("adminEmail") &&
+        password === localStorage.getItem("adminPassword")
+    ) {
+        localStorage.setItem("adminLoggedIn", "true");
+
+        document.getElementById("adminLogin").style.display = "none";
+        document.getElementById("adminPanel").style.display = "block";
+
+        loadUsers();
+    } else {
+        document.getElementById("adminMessage").innerText =
+            "Invalid Admin Email or Password!";
+    }
+}
+
+function loadUsers() {
+    let name = localStorage.getItem("userName");
+    let email = localStorage.getItem("userEmail");
+    let mobile = localStorage.getItem("userMobile");
+    let type = localStorage.getItem("accountType");
+
+    let table = document.getElementById("userTable");
+
+    if (email) {
+        table.innerHTML = `
+            <tr>
+                <td>${name}</td>
+                <td>${email}</td>
+                <td>${mobile}</td>
+                <td>${type}</td>
+            </tr>`;
+
+        document.getElementById("totalUsers").innerText = "1";
+    } else {
+        table.innerHTML =
+            "<tr><td colspan='4'>No users registered</td></tr>";
+
+        document.getElementById("totalUsers").innerText = "0";
+    }
+}
+
+function adminLogout() {
+    localStorage.removeItem("adminLoggedIn");
+    window.location.reload();
+}
+
 
 
 
